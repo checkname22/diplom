@@ -1,0 +1,20 @@
+.canvas {
+  min-width: 1080px;
+  min-height: 920px;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: bottom;
+}
+.spring {
+  background-image: url(../../assets/img/terrains/terrain-spring.jpg);
+}
+.summer {
+  background-image: url(../../assets/img/terrains/terrain-summer.jpg);
+}
+.autumn {
+  background-image: url(../../assets/img/terrains/terrain-autumn.jpg);
+}
+.winter {
+  background-image: url(../../assets/img/terrains/terrain-winter.jpg);
+}

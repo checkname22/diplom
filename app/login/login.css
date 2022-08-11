@@ -1,0 +1,175 @@
+.login-section {
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+.background-image-box {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image: url(../../assets/img/login/siteBackground.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+  filter: blur(8px);
+}
+.login-container {
+  z-index: 2;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 500px;
+  height: 350px;
+
+  border: 2px solid hsl(162, 9%, 62%);
+  box-shadow: 0px 0px 2px 3px var(--correct_background_color);
+  border-radius: 50px 25px 50px 25px;
+  background-color: var(--background_main_color);
+
+  transition: 1500ms;
+}
+.login-box {
+  display: flex;
+  height: 450px;
+}
+/*----- LOGIN-INPUTS -----*/
+.input-login {
+  width: 300px;
+  height: 35px;
+
+  margin: 10px;
+
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--correct_color);
+
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--correct_background_color);
+  border-radius: 0px 0px 10px 10px;
+  outline: none;
+}
+/*----- LOGIN BTN -----*/
+.login-btn-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 250px;
+  height: 150px;
+
+  margin-top: 15px;
+}
+.login-btns {
+  cursor: grab;
+
+  width: 100px;
+  height: 50px;
+  margin-top: 25px;
+  
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--correct_color);
+
+  border: 2px solid var(--correct_background_color);
+  border-radius: 10px 10px 10px 10px;
+
+  transition: 1000ms;
+}
+.reg-btn {
+  width: 215px;
+  text-decoration: none;
+}
+/*----- POP-UP -----*/
+.login-pop-up {
+  z-index: 3;
+  
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 500px;
+  height: 350px;
+
+  border: 2px solid hsl(162, 9%, 62%);
+  box-shadow: 0px 0px 2px 3px var(--wrong_background_color);
+  border-radius: 50px 25px 50px 25px;
+  background-color: var(--background_main_color);
+
+  color: var(--wrong_color);
+
+  transition: 1500ms;
+}
+.login-pop-up > b {
+  margin-bottom: 80px;
+}
+.login-exit__pop-up {
+  z-index: 3;
+  position: relative;
+  top: -20px;
+  right: -205px;
+
+  width: 50px;
+  height: 50px;
+}
+.login-exit__pop-up::before {
+  content: '';
+
+  position: relative;
+  top: 15px;
+  left: 15px;
+
+  width: 25px;
+  height: 3px;
+
+  background-color: var(--wrong_background_color);
+
+  transform: rotate(50deg);
+  display: block;
+}
+.login-exit__pop-up::after {
+  content: '';
+
+  position: relative;
+  top: 15px;
+  left: 15px;
+
+  width: 25px;
+  height: 3px;
+
+  background-color: var(--wrong_background_color);
+
+  transform: rotate(-50deg);
+  display: block;
+}
+/*----- HOVER -----*/
+/*----- LOGIN HOVER -----*/
+.login-container:hover {
+  box-shadow: 0px 0px 3px 6px hsl(224, 18%, 15%),
+              0px 0px 3px 12px var(--correct_background_color);
+}
+.login-btn:hover {
+  background-color: hsl(224, 18%, 18%);
+  box-shadow: 0px 0px 1px 1px hsl(162, 9%, 62%);
+}
+.login-pop-up:hover {
+  box-shadow: 0px 0px 3px 6px hsl(224, 18%, 15%),
+              0px 0px 3px 12px var(--wrong_background_color);
+}

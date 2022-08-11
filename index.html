@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feel The Game</title>
+  <link rel="stylesheet" href="./main.css">
+  <!-- <link rel="stylesheet" href="./app/login/login.css">
+  <link rel="stylesheet" href="./app/create-character/create-character.css">
+  <link rel="stylesheet" href="./app/choice-character/choice-character.css"> -->
+  <link rel="stylesheet" href="./app/game/day-time/time.css">
+  <link rel="stylesheet" href="./app/tree/tree.css">
+  <link rel="stylesheet" href="./app/game/game.css">
+  <link rel="stylesheet" href="./app/canvas/canvas.css">
+  
+  <!-- <script defer src="./app/login/login.js"></script>
+  <script defer src="./app/create-character/create-character.js"></script>
+  <script defer src="./app/choice-character/choice-character.js"></script> -->
+  <script defer src="./app/canvas/canvas.js"></script>
+  <script defer src="./app/tree/tree.js"></script>
+  <script defer src="./app/game/seasons/weather/weather.js"></script>
+  <script defer src="./app/game/seasons/seasons.js"></script>
+  <script defer src="./app/house/house.js"></script>
+  <script defer src="./app/player/player.js"></script>
+  <script defer src="./app/game/day-time/time.js"></script>
+  <script defer src="./app/game/menu-bar.js"></script>
+  <script defer src="./app/game/game.js"></script>
+  <script defer src="./app/game/gameFactory.js"></script>
+</head>
+<body>
+  <!-- <section class="login-section" style="display: flex;">
+    <div class="background-image-box"></div>
+    <div class="login-box login-container" style="display: flex;">
+      <input class='input-login login' type="text" placeholder="login">
+      <input class='input-login password' type="password" placeholder="password">
+      <div class="login-permision-box" style="display: none; color: var(--wrong_color)">SMT WRONG</div>
+        <div class='login-btn-box'>
+          <div class='login-btns exit-btn'>exit</div>
+          <div class='login-btns login-btn'>login</div>
+          <a href='#' class='login-btns reg-btn'>registration</a>
+        </div>
+  </div>
+  <div class="login-pop-up" style="display: none;">
+    <div class='login-exit__pop-up'></div>
+    <h2>Wrong!</h2>
+    <b>Password or login is wrong.</b>
+    <p>Try again, click -> to red X.</p>
+</div>
+
+  </section> -->
+
+  <!-- <section class="create-character-section flex" style="display: none;">
+    <div class="create-character-box flex">
+      <div class="create-character-gender-box flex">
+        <div class="create-character-gender-male create-character-item flex">MALE</div>
+        <div class="create-character-gender-female  create-character-item flex">FAMALE</div>
+      </div>
+      <div class="create-character-person-box flex">
+        <div class="create-character-person-box__name flex">
+          <input class="create-character-person-input-name" type="text" placeholder="character name" minlength="2" maxlength="8">
+          <div class="create-character-person-permision" ></div>
+          <div class="create-character-person-btn-name create-character-item flex">ENTER NAME</div>
+        </div>
+        <div class="create-character-person-image-box flex">
+          <img class="create-character-person-box__image" src="./assets/img/players/no-person.png" alt="character">
+        </div>
+      </div>
+      <div class="create-character-menu-box flex">
+        <div class="create-character-menu-exit create-character-item flex">EXIT</div>
+        <div class="create-character-menu-create create-character-item flex">CREATE</div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- <section class="choice-character-section flex" style="display: none;">
+    <div class="choice-character-box flex">
+      <div class="choice-character-items-box flex">
+        <div class="choice-character-name-box choice-items flex">
+          <div class="choice-character-name-title choice-title flex">HERO NAME</div>
+          <div class="choice-character-name choice-item flex"></div>
+          <div></div>
+        </div>
+        <div class="choice-character-energy-box choice-items flex">
+          <div class="choice-character-energy-title choice-title flex">ENERGY</div>
+          <div class="choice-character-energy choice-item flex"></div>
+        </div>
+        <div class="choice-character-str-box choice-items flex">
+          <div class="choice-character-str-title choice-title flex">STRENGTH</div>
+          <div class="choice-character-str choice-item flex"></div>
+        </div>
+        <div class="choice-character-resoursec-box choice-items flex">
+          <div class="choice-character-resoursec-title choice-title flex">WOOD</div>
+          <div class="choice-character-resoursec choice-item flex"></div>
+        </div>
+      </div>
+      <div class="choice-character-img-box flex">
+        <img class="choice-character-img" src="./assets/img/players/no-person.png" alt="character">
+      </div>
+      <div class="choice-character-btns-box flex">
+        <div class="choice-btn-in-game choice-btn flex">IN GAME</div>
+        <div class="choice-btn-back choice-btn flex">BACK</div>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="game-section" style="display: flex;">
+    <div class="game-menu-bar">
+      <div class="game-menu-box__resources">
+        <div class="resources-wood__box">
+          <div class="resources-wood__box__item resources-wood__box-spring">
+            <div class="resources-wood-box__item_img res-items"><img class="resource-image" src="./assets/img/resources/wood-spring.png" alt="wood"></div>
+            <div class="resources-wood-box__item_count-spring res-items">0</div>
+          </div>
+          <div class="resources-wood__box__item resources-wood__box-summer">
+            <div class="resources-wood-box__item_img res-items"><img class="resource-image" src="./assets/img/resources/wood-summer.png" alt="wood"></div>
+            <div class="resources-wood-box__item_count-summer res-items">0</div>
+          </div>
+          <div class="resources-wood__box__item resources-wood__box-autumn">
+            <div class="resources-wood-box__item_img res-items"><img class="resource-image" src="./assets/img/resources/wood-autumn.png" alt="wood"></div>
+            <div class="resources-wood-box__item_count-autumn res-items">0</div>
+          </div>
+          <div class="resources-wood__box__item resources-wood__box-winter">
+            <div class="resources-wood-box__item_img res-items"><img class="resource-image" src="./assets/img/resources/wood-winter.png" alt="wood"></div>
+            <div class="resources-wood-box__item_count-winter res-items">0</div>
+          </div>
+          <div class="resources-wood__box__item resources-all-wood-box">
+            <div class="resources-wood-box__item_img res-items"><img class="resource-image" src="./assets/img/resources/wood-all.png" alt="wood"></div>
+            <div class="resources-all-wood-box-count res-items">0</div>
+          </div>
+        </div>
+      </div>
+      <div class="resources-coins-box">
+        <div class="resources-coins-box_img res-items"> <img class="resource-image" src="./assets/img/resources/coin.png" alt="coin"> </div>
+        <div class="resources-coins-box_count res-items">0</div>
+      </div>
+      <div class="game-menu-box__time flex">
+        <div class="day-time flex">MORNING</div>
+        <div class="day-clock flex"></div>
+      </div>
+      <div class="game-menu-box__season flex">
+        <div class="game-menu-season__title flex">SEASON</div>
+        <div class="game-menu-season__item flex"></div>
+      </div>
+      <div class="game-menu-box__weather flex">
+        <div class="game-menu-weather__title flex">WEATHER</div>
+        <div class="game-menu-weather__item flex"></div>
+      </div>
+      <div class="game-menu-box__weather_api flex">
+        <div class="game-menu-box__weather_api-temp flex"></div>
+        <div class="game-menu-box__weather_api-icon flex">
+          <img src="https://openweathermap.org/img/w/04d.png" alt="icon">
+        </div>
+      </div>
+      <div class="game-menu-box__shop flex">
+        <div class="game-menu-box__shop-title">SHOP</div>
+        <div class="game-menu-box__window-shop" style="display: none;">
+          <div class="sell-resources-box flex">
+            <div class="sell-resources-wood-box sell-res-items-box">
+              <div class="sell-resources-wood-box__image flex"><img class="wood-box__image-img" src="./assets/img/resources/wood-all.png" alt="wood"></div>
+              <div class="sell-resources-wood-choice-box">
+                <select name="" id="select">
+                  <option value="">> click <</option>
+                  <option value="spring">spring</option>
+                  <option value="summer">summer</option>
+                  <option value="autumn">autumn</option>
+                  <option value="winter">winter</option>
+                </select>
+              </div>
+              <div class="sell-resources-wood-deal-box flex">
+                <div class="deal-box__minus flex">-</div>
+                <div class="deal-box__count flex">0</div>
+                <div class="deal-box__plus flex">+</div>
+              </div>
+            </div>
+            <div class="sell-resources-make-deal-box sell-res-items-box flex">
+              <div class="sell-resources-arrow-img-box flex">➟</div>
+              <div class="sell-resources-btn flex">SOLD</div>
+            </div>
+            <div class="sell-resources-coin-img-box sell-res-items-box">
+              <div class="sell-resources-coin-box__image flex">
+                <img src="./assets/img/resources/coin.png" alt="wood">
+              </div>
+              <div class="sell-resources-coin-deal-box flex">
+                <div class="deal-box-coin-count flex">0</div>
+                <div class="deal-box-coin-symbol flex">€</div>
+              </div>
+            </div>
+          </div>
+          <div class="game-menu-buy-items-box flex">
+            <div class="buy-items-food-box flex">
+              <div class="food-box-item-title flex food-item">FOOD</div>
+              <div class="food-box-item-img-box flex food-item"> 
+                <img class="food-box-item-img" src="./assets/img/players/no-person.png" alt="food">
+              </div>
+              <div class="food-box-items-price flex">
+                <div class="food-box-item-price flex">0</div>
+                <div class="food-box-item-price-symbol flex">€</div>
+                <div class="food-box-item-energy flex">0</div>
+                <div class="food-box-item-energy-symbol flex">⚡</div>
+              </div>
+              <select class="food-select food-item">
+                <option value="no-food"> > CLICK < </option>
+                <option value="chiken">chiken</option>
+                <option value="eggs">eggs</option>
+                <option value="meat">meat</option>
+                <option value="soup">soup</option>
+              </select>
+              <div class="food-buy-btn flex food-item">BUY</div>
+            </div>
+            <div class="buy-items-axe-box flex">
+              <div class="axe-box-item-title flex axe-item">AXES</div>
+              <div class="axe-box-item-img-box flex axe-item">
+                <img class="axe-box-item-img" src="./assets/img/players/no-person.png" alt="axe">
+              </div>
+              <div class="axe-box-item-description flex">
+                <div class="axe-box-item-description-price-box flex">
+                  <div class="axe-box-item-description-price-sum flex">0</div>
+                  <div class="axe-box-item-description-price-symbol flex">€</div>
+                </div>
+                <div class="axe-box-item-description-power-box flex">
+                  <div class="axe-box-item-description-power-title flex">STR</div>
+                  <div class="axe-box-item-description-power-num flex">0</div>
+                </div>
+              </div>
+              <select class="axe-select axe-item">
+                <option value="no-axe"> > CLICK < </option>
+                <option value="wood">wood</option>
+                <option value="stone">stone</option>
+                <option value="steel">steel</option>
+              </select>
+              <div class="axe-buy-btn flex axe-item">BUY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-menu-box-character flex">
+        <div class="game-menu-box-character-title flex">HERO NAME</div>
+        <div class="game-menu-box-character-name flex"></div>
+      </div>
+      <div class="game-menu-box-character-energy">
+        <div class="character-energy_title flex">ENERGY</div>
+        <div class="character-energy_energy-line"></div>
+        <div class="character-energy_energy-persent flex"></div>
+      </div>
+      <div class="game-menu-box-raiting flex">RAITING
+        <div class="game-menu-raiting__items flex" style="display: none;">
+          <div class="game-menu-raiting__items-item flex">SPRING
+            <div class="raiting-item__top raiting-item__top-spring flex" style="display: none;">
+              <div class="raiting-item__top-title raiting-item__top-title-spring flex">SPRING LEADER</div>
+              <div class="raiting-item__top-leader-board">
+                <div class="raiting-item__leader-board-titles raiting-item__leader-board-titles-spring flex">
+                  <div class="raiting-item__leader-board-titles_name flex">NAME</div>
+                  <div class="raiting-item__leader-board-titles_resources flex">RESOURCES</div>
+                  <div class="raiting-item__leader-board-titles_total flex">TOTAL</div>
+                </div>
+                <div class="raiting-item__leader-board__leaders-box">
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">1</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">2</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">3</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">4</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">5</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">6</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">7</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">8</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">9</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_spring flex">10</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_spring flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_spring flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_spring flex">999</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="game-menu-raiting__items-item flex">SUMMER
+            <div class="raiting-item__top raiting-item__top-summer flex" style="display: none;">
+              <div class="raiting-item__top-title raiting-item__top-title-summer flex">SUMMER LEADER</div>
+              <div class="raiting-item__top-leader-board">
+                <div class="raiting-item__leader-board-titles raiting-item__leader-board-titles-summer flex">
+                  <div class="raiting-item__leader-board-titles_name flex">NAME</div>
+                  <div class="raiting-item__leader-board-titles_resources flex">RESOURCES</div>
+                  <div class="raiting-item__leader-board-titles_total flex">TOTAL</div>
+                </div>
+                <div class="raiting-item__leader-board__leaders-box">
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">1</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">2</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">3</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">4</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">5</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">6</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">7</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">8</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">9</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_summer flex">10</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_summer flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_summer flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_summer flex">999</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="game-menu-raiting__items-item flex">AUTUMN
+            <div class="raiting-item__top raiting-item__top-autumn flex" style="display: none;">
+              <div class="raiting-item__top-title raiting-item__top-title-autumn flex">AUTUMN LEADER</div>
+              <div class="raiting-item__top-leader-board">
+                <div class="raiting-item__leader-board-titles raiting-item__leader-board-titles-autumn flex">
+                  <div class="raiting-item__leader-board-titles_name flex">NAME</div>
+                  <div class="raiting-item__leader-board-titles_resources flex">RESOURCES</div>
+                  <div class="raiting-item__leader-board-titles_total flex">TOTAL</div>
+                </div>
+                <div class="raiting-item__leader-board__leaders-box">
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">1</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">2</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">3</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">4</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">5</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">6</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">7</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">8</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">9</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_autumn flex">10</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_autumn flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_autumn flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_autumn flex">999</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="game-menu-raiting__items-item flex">WINTER
+            <div class="raiting-item__top raiting-item__top-winter flex" style="display: none;">
+              <div class="raiting-item__top-title raiting-item__top-title-winter flex">WINDER LEADER</div>
+              <div class="raiting-item__top-leader-board">
+                <div class="raiting-item__leader-board-titles raiting-item__leader-board-titles-winter flex">
+                  <div class="raiting-item__leader-board-titles_name flex">NAME</div>
+                  <div class="raiting-item__leader-board-titles_resources flex">RESOURCES</div>
+                  <div class="raiting-item__leader-board-titles_total flex">TOTAL</div>
+                </div>
+                <div class="raiting-item__leader-board__leaders-box">
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">1</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">2</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">3</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">4</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">5</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">6</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">7</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">8</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">9</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                  <div class="raiting-item__leader-board__leaders flex">
+                    <div class="raiting-item__leader-board__leaders-number leader-board__leaders-number_winter flex">10</div>
+                    <div class="raiting-item__leader-board__leaders-name leader-board__leaders-name_winter flex">master300</div>
+                    <div class="raiting-item__leader-board__leaders-resource leader-board__leaders-resource_winter flex">WOOD</div>
+                    <div class="raiting-item__leader-board__leaders-total leader-board__leaders-total_winter flex">999</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-bar-menu-box flex">M
+        <div class="game-bar-menu-window flex" style="display: none;">
+          <div class="game-bar-menu-window__options">OPTIONS</div>
+          <div>control</div>
+          <div>video</div>
+          <div>sound</div>
+          <div class="game-bar-menu-window__exit-game">exit game</div>
+        </div>
+      </div>
+    </div>
+    <canvas class="canvas"> canvas doesn't work </canvas>
+    <div class="game-tools">
+      <img class="player resource" src="./assets/img/players/player.png" alt="player">
+      <img class="spring-tree resource" src="./assets/img/tree/spring-tree.png" alt="tree">
+      <img class="summer-tree resource" src="./assets/img/tree/summer-tree.png" alt="tree">
+      <img class="autumn-tree resource" src="./assets/img/tree/autumn-tree.png" alt="tree">
+      <img class="winter-tree resource" src="./assets/img/tree/winter-tree.png" alt="tree">
+      <img class="stump resource" src="./assets/img/tree/summer-stump.png" alt="stump">
+      <img class="house resource" src="./assets/img/house/summer-house.png" alt="house">
+    </div>
+    <!-- <div class="pop-ups-box-notification">
+      <div class="pop-up-notification flex">
+        <div class="notification-title flex">WARNING</div>
+        <div class="notification-description flex">Sorry. Your Energy is not enougth for cutting tree, buy food.</div>
+        <div class="notification-btn flex">OKAY</div>
+      </div>
+    </div> -->
+  </section>
+</body>
+</html>

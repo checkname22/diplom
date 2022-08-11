@@ -1,0 +1,24 @@
+.target {
+  position: absolute;
+  z-index: 2;
+
+  width: 20px;
+  height: 20px;
+  /* background-color: red; */
+}
+.timer-box {
+  z-index: 2;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+
+  display: none;
+  justify-content: center;
+  width: 67px;
+  height: auto;
+  padding: 5px;
+
+  color: var(--correct_color);
+
+  background-color: var(--background_main_color);
+}

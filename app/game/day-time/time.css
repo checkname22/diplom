@@ -1,0 +1,12 @@
+.morning {
+  filter: brightness(0.8);
+}
+.day {
+  filter: brightness(1);
+}
+.evening {
+  filter: brightness(0.7);
+}
+.night {
+  filter: brightness(0.4);
+}
